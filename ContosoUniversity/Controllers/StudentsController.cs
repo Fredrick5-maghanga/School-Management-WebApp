@@ -24,16 +24,16 @@ namespace ContosoUniversity.Controllers
                 string sortOrder,
                 string currentFilter,
                 string searchString,
-                int? pageNumber)
+                int? pageNumber1)
         {
-            {
+            
                 ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
                 ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
                 ViewData["CurrentSort"] = sortOrder;
 
                 if (searchString != null)
                 {
-                    pageNumber = 1;
+                    pageNumber1 = 1;
                 }
                 else
                 {
@@ -65,9 +65,9 @@ namespace ContosoUniversity.Controllers
 
 
                 int pageSize = 3;
-                return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), pageNumber ?? 1, pageSize));
+                return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), pageNumber1?? 1, pageSize));
             }
-        }
+        
 
         // GET: Students/Details/5
         public async Task<IActionResult> Details(int? id)
